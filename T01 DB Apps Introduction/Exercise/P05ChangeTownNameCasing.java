@@ -47,6 +47,8 @@ public class P05ChangeTownNameCasing {
         }
 
         System.out.println(names);
+
+        connection.close();
     }
 
     private static ResultSet getResultSet(Connection connection, String country) throws SQLException {
