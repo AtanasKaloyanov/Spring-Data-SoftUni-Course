@@ -61,6 +61,8 @@ public class P04AddMinion {
         int minionId = getMinionId(minionName, minionAge, connection, townId);
 
         minionToVillainSetting(minionName, villainName, connection, villainId, minionId);
+
+        connection.close();
     }
 
     private static void minionToVillainSetting(String minionName, String villainName, Connection connection, int villainId, int minionId) throws SQLException {
