@@ -34,6 +34,7 @@ public class P08IncreaseMinionsAge {
 
         resultPrinting(connection);
 
+        connection.close();
     }
 
     private static void updateNameAndAge(Connection connection, List<Integer> givenIds) throws SQLException {
