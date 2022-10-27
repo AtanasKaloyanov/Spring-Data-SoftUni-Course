@@ -5,12 +5,12 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class P03GetMinionNames {
-    private static final String villainNameById = """
+    private static final String VILLAIN_NAME_BY_ID = """
             SELECT `V`.`name` AS `villain_name`\s
             FROM `villains` AS `V`
             WHERE `V`.`id` = ?;""";
 
-    private static final String minionsNameAndAgeByGivenVillainId = """
+    private static final String MINION_NAME_AND_AGE_BY_GIVEN_VILLAIN_ID = """
             SELECT DISTINCT `M`.`name` AS `minion_name`, `M`.`age`AS `minion_age`
             FROM `minions` AS `M`
             JOIN `minions_villains` AS `M_V`
@@ -21,7 +21,7 @@ public class P03GetMinionNames {
 
     public static void main(String[] args) throws SQLException {
         Connection connection = P01GetConnection.getConnection();
-        PreparedStatement villainStatement = connection.prepareStatement(villainNameById);
+        PreparedStatement villainStatement = connection.prepareStatement(VILLAIN_NAME_BY_ID);
 
         Scanner scanner = new Scanner(System.in);
         int villainId = Integer.parseInt(scanner.nextLine());
@@ -37,7 +37,7 @@ public class P03GetMinionNames {
         String villainName = villainResult.getString("villain_name");
         System.out.printf("Villain: %s%n", villainName);
 
-        PreparedStatement minionsStatement = connection.prepareStatement(minionsNameAndAgeByGivenVillainId);
+        PreparedStatement minionsStatement = connection.prepareStatement(MINION_NAME_AND_AGE_BY_GIVEN_VILLAIN_ID);
         minionsStatement.setInt(1, villainId);
         ResultSet minionsResult = minionsStatement.executeQuery();
 

@@ -1,8 +1,7 @@
 import java.sql.*;
-import java.util.Properties;
 
 public class P02GetVillainsNames {
-    private static final String sqlStatement = "SELECT `V`.`name`,  COUNT(DISTINCT `M_V`.`minion_id`) AS `minions_count`" +
+    private static final String VILLAIN_NAME_AND_COUNT_MINIONS = "SELECT `V`.`name`,  COUNT(DISTINCT `M_V`.`minion_id`) AS `minions_count`" +
             " FROM `villains` AS `V`" +
             " JOIN `minions_villains` AS `M_V`" +
             " ON `V`.`id` = `M_V`. `villain_id`" +
@@ -14,7 +13,7 @@ public class P02GetVillainsNames {
 
         Connection connection = P01GetConnection.getConnection();
 
-        PreparedStatement statement = connection.prepareStatement(sqlStatement);
+        PreparedStatement statement = connection.prepareStatement(VILLAIN_NAME_AND_COUNT_MINIONS);
 
         statement.setInt(1, 15);
         ResultSet resultset = statement.executeQuery();
@@ -24,6 +23,7 @@ public class P02GetVillainsNames {
             int minionsCount = resultset.getInt("minions_count");
             System.out.printf("%s %d%n", villailName, minionsCount);
         }
+
         connection.close();
     }
 }

@@ -39,6 +39,7 @@ public class P06RemoveVillain {
 
         if (!villainNameResult.next()) {
             System.out.println(NO_VILLAIN_WITH_THE_GIVEN_ID);
+            connection.close();
             return;
         }
 
@@ -59,7 +60,7 @@ public class P06RemoveVillain {
 
             System.out.printf(VILLLAIN_DELETE_MESSAGE, villainName);
             System.out.printf(MINIONS_RELEASE_MESSAGE, minionsCount);
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();

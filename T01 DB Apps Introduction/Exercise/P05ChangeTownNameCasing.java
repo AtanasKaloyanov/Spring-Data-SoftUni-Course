@@ -40,6 +40,12 @@ public class P05ChangeTownNameCasing {
             names.add(selectNamesResult.getString(TOWN_COLUMN_NAME));
         }
 
+        finalPrinting(names);
+
+        connection.close();
+    }
+
+    private static void finalPrinting(List<String> names) {
         if (names.size() == 1) {
             System.out.println(MESSAGE_BY_ONE_TOWN);
         } else {
@@ -47,8 +53,6 @@ public class P05ChangeTownNameCasing {
         }
 
         System.out.println(names);
-
-        connection.close();
     }
 
     private static ResultSet getResultSet(Connection connection, String country) throws SQLException {

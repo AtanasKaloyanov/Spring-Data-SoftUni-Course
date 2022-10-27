@@ -16,25 +16,26 @@ public class P09IncreaseAgeStoredProcedure {
     private static final String WRONG_ID_MESSAGE = "There is no minion with id %d. You can insert another id, maybe it will be correct!";
 
     public static void main(String[] args) throws SQLException {
-        Connection connectiion = P01GetConnection.getConnection();
+        Connection connection = P01GetConnection.getConnection();
 
         Scanner scanner = new Scanner(System.in);
         int givenNumber = Integer.parseInt(scanner.nextLine());
 
-        ResultSet minionsResult = getResultSet(connectiion, givenNumber);
+        ResultSet minionsResult = getResultSet(connection, givenNumber);
 
         if (!minionsResult.next()) {
             System.out.printf(WRONG_ID_MESSAGE, givenNumber);
+            connection.close();
             return;
         }
 
-        updateAge(connectiion, givenNumber);
+        updateAge(connection, givenNumber);
 
-        ResultSet printResult = getUpdatedResultSet(connectiion, givenNumber);
+        ResultSet printResult = getUpdatedResultSet(connection, givenNumber);
 
         finalPrinting(printResult);
 
-        connectiion.close();
+        connection.close();
     }
 
     private static void finalPrinting(ResultSet printResult) throws SQLException {
