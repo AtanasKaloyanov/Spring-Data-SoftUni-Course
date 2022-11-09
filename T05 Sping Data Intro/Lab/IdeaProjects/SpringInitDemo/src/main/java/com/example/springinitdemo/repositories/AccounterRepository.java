@@ -1,0 +1,10 @@
+package com.example.springinitdemo.repositories;
+
+import com.example.springinitdemo.models.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AccounterRepository extends JpaRepository<Account,Long> {
+
+}
